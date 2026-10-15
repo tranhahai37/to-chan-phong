@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tô Chấn Phong — Một Thuở Yêu Người | Nhật Ký Âm Nhạc & Kho Lưu Trữ 196 Bản Thu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-velvet: #141118;
+      --surface-mahogany: #1D1823;
+      --surface-inlay: #272030;
+      --surface-hover: #31283C;
+      --text-ivory: #F2ECE1;
+      --text-warm-ash: #C9BFC9;
+      --text-muted-rose: #948897;
+      --accent-gold: #E2A857;
+      --accent-gold-soft: rgba(226, 168, 87, 0.16);
+      --accent-wine: #9E3E50;
+      --border-subtle: rgba(242, 236, 225, 0.11);
+      --border-gold: rgba(226, 168, 87, 0.38);
+      --font-serif: 'Newsreader', Georgia, serif;
+      --font-sans: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-velvet);
+      color: var(--text-ivory);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(158, 62, 80, 0.14), transparent 42%),
+        radial-gradient(circle at 82% 8%, rgba(226, 168, 87, 0.10), transparent 38%),
+        var(--bg-velvet);
+      color: var(--text-ivory);
+      overflow-x: hidden;
+    }
+
+    /* Top masthead */
+    .masthead {
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1.1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: rgba(20, 17, 24, 0.88);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 40;
+    }
+
+    .masthead-brand {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+    }
+
+    .masthead-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text-ivory);
+      letter-spacing: 0.01em;
+    }
+
+    .masthead-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted-rose);
+    }
+
+    .masthead-nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-size: 0.88rem;
+    }
+
+    .masthead-nav a {
+      color: var(--text-warm-ash);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .masthead-nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    .fanpage-pill {
+      border: 1px solid var(--border-gold);
+      background: var(--accent-gold-soft);
+      color: var(--accent-gold);
+      padding: 0.38rem 0.85rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    /* Main 2-column layout */
+    .workspace {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 2.2rem 2.5rem 5rem;
+      display: grid;
+      grid-template-columns: 430px minmax(0, 1fr);
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* Left Sticky Listening Console */
+    .listening-booth {
+      position: sticky;
+      top: 5.2rem;
+      background: var(--surface-mahogany);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .booth-header {
+      padding: 0.95rem 1.25rem;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.015);
+    }
+
+    .booth-status {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.8rem;
+      color: var(--accent-gold);
+      font-weight: 500;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      box-shadow: 0 0 10px var(--accent-gold);
+    }
+
+    .cd-cat-no {
+      font-size: 0.75rem;
+      color: var(--text-muted-rose);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Stage Cover Deck (Works both offline file:// and online http://) */
+    .video-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0D0A10;
+      border-bottom: 1px solid var(--border-subtle);
+      overflow: hidden;
+    }
+
+    .video-stage iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .stage-sleeve {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .stage-backdrop {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.68) contrast(1.06);
+      transition: transform 0.45s ease, filter 0.3s ease;
+    }
+
+    .stage-sleeve:hover .stage-backdrop {
+      transform: scale(1.03);
+      filter: brightness(0.8) contrast(1.08);
+    }
+
+    .stage-vignette {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20,17,24,0.18) 0%, rgba(20,17,24,0.82) 100%);
+    }
+
+    .vinyl-disc {
+      position: absolute;
+      right: -32px;
+      bottom: -32px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at center, #1D1823 0 16%, #E2A857 17% 28%, #261F2D 29% 31%, #17131B 32% 100%);
+      border: 1px solid rgba(226, 168, 87, 0.35);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.65);
+      opacity: 0.85;
+      pointer-events: none;
+    }
+
+    .stage-play-cta {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.65rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .play-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(226, 168, 87, 0.94);
+      color: #141118;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .stage-sleeve:hover .play-circle {
+      transform: scale(1.08);
+      background: #F2ECE1;
+    }
+
+    .play-caption {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-ivory);
+      background: rgba(20, 17, 24, 0.78);
+      border: 1px solid var(--border-gold);
+      padding: 0.28rem 0.75rem;
+      border-radius: 99px;
+      backdrop-filter: blur(6px);
+    }
+
+    .now-playing-body {
+      padding: 1.25rem 1.35rem 1.4rem;
+    }
+
+    .np-title {
+      font-family: var(--font-serif);
+      font-size: 1.26rem;
+      line-height: 1.32;
+      font-weight: 500;
+      color: var(--text-ivory);
+      margin-bottom: 0.45rem;
+    }
+
+    .np-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted-rose);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.1rem;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .player-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.55rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn-control {
+      background: var(--surface-inlay);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-ivory);
+      padding: 0.55rem 0.75rem;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+      text-align: center;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .btn-control:hover {
+      background: var(--surface-hover);
+      border-color: var(--border-gold);
+    }
+
+    .btn-control.gold {
+      background: var(--accent-gold-soft);
+      border-color: var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    .quick-picks-title {
+      font-size: 0.78rem;
+      color: var(--text-muted-rose);
+      margin-bottom: 0.6rem;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 0.95rem;
+    }
+
+    .quick-picks-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .quick-pick-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.52rem 0.72rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid transparent;
+      color: var(--text-warm-ash);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .quick-pick-btn:hover,
+    .quick-pick-btn.active {
+      background: var(--surface-inlay);
+      border-color: var(--border-gold);
+      color: var(--text-ivory);
+    }
+
+    .quick-pick-views {
+      font-size: 0.74rem;
+      color: var(--text-muted-rose);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    /* Right Column: Editorial Essay & Full Archive */
+    .editorial-column {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .blog-article {
+      background: var(--surface-mahogany);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 3rem 3.25rem;
+    }
+
+    .article-date {
+      font-size: 0.84rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.8rem;
+    }
+
+    .article-headline {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 3.2vw, 2.85rem);
+      font-weight: 500;
+      line-height: 1.16;
+      color: var(--text-ivory);
+      margin-bottom: 1.35rem;
+      max-width: 26ch;
+    }
+
+    .article-epigraph {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.22rem;
+      line-height: 1.6;
+      color: var(--text-warm-ash);
+      border-left: 2px solid var(--accent-gold);
+      padding-left: 1.25rem;
+      margin: 1.5rem 0 2.2rem;
+      max-width: 64ch;
+    }
+
+    .prose {
+      font-size: 1.02rem;
+      line-height: 1.82;
+      color: var(--text-warm-ash);
+      max-width: 68ch;
+    }
+
+    .prose p {
+      margin-bottom: 1.25rem;
+    }
+
+    .prose h2 {
+      font-family: var(--font-serif);
+      font-size: 1.65rem;
+      font-weight: 500;
+      color: var(--text-ivory);
+      margin: 2.4rem 0 0.95rem;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .prose h3 {
+      font-family: var(--font-serif);
+      font-size: 1.28rem;
+      font-weight: 500;
+      color: var(--accent-gold);
+      margin: 1.75rem 0 0.65rem;
+    }
+
+    .prose ul {
+      list-style: none;
+      margin: 0.8rem 0 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .prose li {
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .prose li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+    }
+
+    /* Interactive Song Trigger inside Blog Prose */
+    .song-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--border-gold);
+      color: var(--accent-gold);
+      padding: 0.08rem 0.52rem;
+      border-radius: 3px;
+      font-family: var(--font-sans);
+      font-size: 0.88em;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      vertical-align: baseline;
+    }
+
+    .song-trigger:hover {
+      background: var(--accent-gold);
+      color: #141118;
+    }
+
+    /* System Update Summary Box inside Blog */
+    .changelog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0 2rem;
+    }
+
+    .changelog-item {
+      background: var(--surface-inlay);
+      border: 1px solid var(--border-subtle);
+      padding: 1.1rem 1.2rem;
+      border-radius: 5px;
+    }
+
+    .changelog-item strong {
+      display: block;
+      color: var(--text-ivory);
+      font-size: 0.92rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .changelog-item span {
+      font-size: 0.84rem;
+      color: var(--text-muted-rose);
+      display: block;
+      line-height: 1.5;
+    }
+
+    /* Fanpage Ready-to-Post Box */
+    .fanpage-draft-box {
+      background: #16121B;
+      border: 1px solid var(--border-gold);
+      border-radius: 6px;
+      padding: 1.5rem 1.6rem;
+      margin-top: 1.5rem;
+    }
+
+    .draft-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .draft-title {
+      font-size: 0.9rem;
+      color: var(--accent-gold);
+      font-weight: 500;
+    }
+
+    .copy-btn {
+      background: var(--accent-gold);
+      color: #141118;
+      border: none;
+      padding: 0.42rem 0.9rem;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .copy-btn:hover {
+      opacity: 0.92;
+    }
+
+    .draft-pre {
+      white-space: pre-wrap;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-ivory);
+    }
+
+    /* Full 196-Track Archive Section */
+    .archive-section {
+      background: var(--surface-mahogany);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 2.5rem 2.75rem;
+    }
+
+    .archive-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .archive-title {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 500;
+      color: var(--text-ivory);
+    }
+
+    .archive-count {
+      font-size: 0.88rem;
+      color: var(--text-muted-rose);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .archive-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input {
+      flex: 1 1 260px;
+      background: var(--bg-velvet);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-ivory);
+      padding: 0.62rem 0.95rem;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.88rem;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--accent-gold);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .filter-tab {
+      background: var(--surface-inlay);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-warm-ash);
+      padding: 0.48rem 0.85rem;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .filter-tab.active,
+    .filter-tab:hover {
+      background: var(--accent-gold-soft);
+      border-color: var(--border-gold);
+      color: var(--accent-gold);
+    }
+
+    .track-table-wrap {
+      max-height: 680px;
+      overflow-y: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+    }
+
+    table.track-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+    }
+
+    .track-table thead {
+      position: sticky;
+      top: 0;
+      background: #17131C;
+      z-index: 5;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .track-table th {
+      padding: 0.75rem 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted-rose);
+      font-size: 0.78rem;
+    }
+
+    .track-table td {
+      padding: 0.7rem 0.9rem;
+      border-bottom: 1px solid rgba(242, 236, 225, 0.06);
+      vertical-align: middle;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .track-row {
+      cursor: pointer;
+      transition: background 0.12s ease;
+    }
+
+    .track-row:hover {
+      background: var(--surface-inlay);
+    }
+
+    .track-row.playing {
+      background: rgba(158, 62, 80, 0.24);
+    }
+
+    .track-index {
+      color: var(--text-muted-rose);
+      width: 44px;
+    }
+
+    .track-name {
+      color: var(--text-ivory);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .track-channel {
+      color: var(--text-muted-rose);
+      font-size: 0.76rem;
+    }
+
+    .cat-badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-warm-ash);
+    }
+
+    .yt-ext-link {
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-size: 0.78rem;
+    }
+
+    .yt-ext-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 1024px) {
+      .workspace {
+        grid-template-columns: 1fr;
+        padding: 1.25rem;
+      }
+      .listening-booth {
+        position: relative;
+        top: 0;
+      }
+      .blog-article, .archive-section {
+        padding: 1.75rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="masthead">
+    <div class="masthead-brand">
+      <span class="masthead-title">Tô Chấn Phong</span>
+      <span class="masthead-sub">Không gian âm nhạc &amp; ký ức thập niên 90</span>
+    </div>
+    <nav class="masthead-nav">
+      <a href="#bai-viet">Bài Blog Cập Nhật</a>
+      <a href="#fanpage-post">Bản Đăng Fanpage</a>
+      <a href="#kho-luu-tru">Kho Lưu Trữ 196 Bản Thu</a>
+      <a class="fanpage-pill" href="https://www.facebook.com/tochanphong/" target="_blank" rel="noopener">Fanpage Tô Chấn Phong (5,7K)</a>
+    </nav>
+  </header>
+
+  <main class="workspace">
+    <!-- Left Sticky Turntable & YouTube Listening Room -->
+    <aside class="listening-booth" aria-label="Trình phát nhạc YouTube">
+      <div class="booth-header">
+        <div class="booth-status">
+          <span class="pulse-dot"></span>
+          <span id="playerStatusText">Phòng nghe trực tuyến</span>
+        </div>
+        <span class="cd-cat-no" id="playerTrackIndex">Bản thu #001 / 196</span>
+      </div>
+
+      <div class="video-stage" id="videoStageContainer"></div>
+
+      <div class="now-playing-body">
+        <h2 class="np-title" id="npTitle">Một Thuở Yêu Người - Tô Chấn Phong | Official Music Video</h2>
+        <div class="np-meta">
+          <span id="npChannel">Mây Saigon Official</span>
+          <span>•</span>
+          <span id="npLength">4:36</span>
+          <span>•</span>
+          <span id="npViews">3.494.078 lượt xem</span>
+        </div>
+
+        <div class="player-controls">
+          <button type="button" class="btn-control" id="prevBtn">⏮ Bài trước</button>
+          <button type="button" class="btn-control" id="nextBtn">Bài kế tiếp ⏭</button>
+          <a id="openYtLink" href="https://www.youtube.com/watch?v=_2jog23ZMI4" target="_blank" rel="noopener" class="btn-control gold">Phát YouTube ↗</a>
+        </div>
+
+        <div class="quick-picks-title">Bấm chọn nhanh 8 bản Hit tiêu biểu:</div>
+        <div class="quick-picks-list" id="quickPicksContainer"></div>
+      </div>
+    </aside>
+
+    <!-- Right Editorial Essay & Full Archive -->
+    <div class="editorial-column">
+      <article class="blog-article" id="bai-viet">
+        <div class="article-date">Bản tin cập nhật dự án Fanpage Tô Chấn Phong • Tháng 10/2026</div>
+        <h1 class="article-headline">Đánh Thức Miền Ký Ức: Kho Lưu Trữ 196 Bản Thu &amp; Live Bất Hủ Của Tô Chấn Phong Trên YouTube</h1>
+
+        <blockquote class="article-epigraph">
+          “Có những giọng hát không cần gồng mình lên những nốt cao chót vót, chỉ cần cất lên vài câu thủ thỉ đã đủ gói trọn cả một miền thanh xuân của người nghe. Với những khán giả yêu nhạc tình thập niên 90, Tô Chấn Phong chính là một miền ký ức như thế.”
+        </blockquote>
+
+        <div class="prose">
+          <p>
+            Đối với những người yêu mến tiếng hát trầm ấm, lãng tử và đầy tự sự của ca sĩ <strong>Tô Chấn Phong</strong>, việc tìm nghe lại những bản thu âm CD gốc từ thập niên 90 hay những đêm nhạc phòng trà gần đây đôi khi giống như việc nhặt lại từng mảnh ký ức rải rác khắp nơi trên mạng.
+          </p>
+          <p>
+            Với đợt cập nhật kho dữ liệu âm nhạc mới nhất cho không gian <strong>Fanpage Tô Chấn Phong</strong> (<code>to_chan_phong</code>), toàn bộ <strong>196 video và bản thu âm</strong> trên nền tảng YouTube đã chính thức được hệ thống hóa, phân loại và kết nối trực tiếp ngay trên trang này. Bạn có thể bấm trực tiếp vào bất kỳ tên bài hát nào dưới đây để nạp vào bàn nhạc bên cạnh.
+          </p>
+
+          <h2>1. Bốn mảnh ghép làm nên dấu ấn Tô Chấn Phong</h2>
+
+          <h3>Mảnh ghép thứ nhất: Những bản Solo chạm vào nỗi cô đơn rất đẹp</h3>
+          <p>
+            Nhắc đến Tô Chấn Phong là nhắc đến dòng nhạc ngoại lời Việt (đặc biệt là những bản dịch đầy chất thơ của nhạc sĩ Khúc Lan) cùng những sáng tác trữ tình sâu lắng của Vũ Tuấn Đức, Trịnh Nam Sơn, Đức Huy:
+          </p>
+          <ul>
+            <li>
+              <button type="button" class="song-trigger" onclick="playById('_2jog23ZMI4')">♫ Một Thuở Yêu Người</button>
+              <em>(3,49 triệu lượt xem)</em> — Bản tình ca mở đầu bằng tiếng saxophone và nhịp trống chậm rãi đã trở thành "chữ ký âm nhạc" không thể thay thế.
+            </li>
+            <li>
+              <button type="button" class="song-trigger" onclick="playById('MZwAmWrKAxI')">♫ Tình Nồng (Live)</button> &amp;
+              <button type="button" class="song-trigger" onclick="playById('9iT7nzwOohs')">♫ Tình Nồng (CD Gốc Lossless)</button>
+              — Giai điệu nồng nàn, da diết khiến bất kỳ ai từng đi qua tuổi trẻ cũng thấy bóng dáng mình trong đó.
+            </li>
+            <li>
+              Các tuyệt phẩm tự sự lắng đọng:
+              <button type="button" class="song-trigger" onclick="playById('gcscFZzLuwM')">♫ Kỷ Niệm Nào Vội Tan</button>,
+              <button type="button" class="song-trigger" onclick="playById('ga1x648_8-w')">♫ Hoa Nào Anh Quên</button>,
+              <button type="button" class="song-trigger" onclick="playById('zpvSWAcS01M')">♫ Chìm Vào Lãng Quên</button>,
+              <button type="button" class="song-trigger" onclick="playById('GwLhXWt6jqA')">♫ Quán Cà Phê Vắng</button>,
+              <button type="button" class="song-trigger" onclick="playById('VZyzRgfAD2U')">♫ Khúc Nhạc Buồn</button> và
+              <button type="button" class="song-trigger" onclick="playById('96hc9ysRLwA')">♫ Con Tim Thật Thà</button>.
+            </li>
+          </ul>
+
+          <h3>Mảnh ghép thứ hai: Những màn Song Ca đi cùng năm tháng</h3>
+          <p>
+            Bộ sưu tập lưu giữ trọn vẹn các màn kết hợp ăn ý giữa Tô Chấn Phong và những giọng ca nữ hàng đầu hải ngoại lẫn phòng trà đương đại:
+          </p>
+          <ul>
+            <li>
+              <strong>Cùng Lưu Bích:</strong> Cặp đôi vàng thập niên 90 với
+              <button type="button" class="song-trigger" onclick="playById('qUbF2GNPejo')">♫ Dĩ Vãng Nhạt Nhòa (PBN 26)</button>,
+              <button type="button" class="song-trigger" onclick="playById('Gs5zlStwujk')">♫ Còn Yêu Em Mãi</button> và
+              <button type="button" class="song-trigger" onclick="playById('aCQvpgLPTkw')">♫ Ta Phụ Nhau Rồi</button>.
+            </li>
+            <li>
+              <strong>Cùng Danh ca Khánh Hà:</strong> Sự đồng điệu tuyệt đối qua
+              <button type="button" class="song-trigger" onclick="playById('rNiKLx59YzE')">♫ Dĩ Vãng Nhạt Nhòa (Live SGC)</button>,
+              bản nhạc Pháp lãng mạn <button type="button" class="song-trigger" onclick="playById('RJcIMLzAuc4')">♫ Paroles Paroles</button> và
+              <button type="button" class="song-trigger" onclick="playById('o-eMdQkZZ7c')">♫ Kỷ Niệm Chiều Mưa</button>.
+            </li>
+            <li>
+              <strong>Cùng Nguyên Hà &amp; Thanh Hà:</strong> Hơi thở mới mẻ trong
+              <button type="button" class="song-trigger" onclick="playById('a-YA_VzAHG8')">♫ Xin Lỗi (cùng Nguyên Hà)</button> và
+              <button type="button" class="song-trigger" onclick="playById('-0Drbw9puCo')">♫ Anh Đã Quên Mùa Thu (cùng Thanh Hà)</button>.
+            </li>
+          </ul>
+
+          <h3>Mảnh ghép thứ ba: Kho Album CD Gốc Khánh Hà Production</h3>
+          <p>
+            Danh mục đã kết nối lại các đĩa CD nguyên bản dành cho người thích nghe liền mạch cả album:
+            <button type="button" class="song-trigger" onclick="playById('18fHYIiGuXM')">♫ Album Một Thuở Yêu Người (1997)</button>,
+            <button type="button" class="song-trigger" onclick="playById('pwYw-FRm1ts')">♫ Album Chìm Vào Lãng Quên</button>,
+            <button type="button" class="song-trigger" onclick="playById('Fdkk-pCBkpI')">♫ Album Kỷ Niệm Nào Vội Tan</button>,
+            <button type="button" class="song-trigger" onclick="playById('jfiydr4xshs')">♫ Album Khúc Nhạc Buồn (KHCD27)</button>,
+            <button type="button" class="song-trigger" onclick="playById('Jwz1e-p2Wms')">♫ Album Mối Tình Đầu</button> và
+            <button type="button" class="song-trigger" onclick="playById('QATli6-lSi8')">♫ Talkshow The Khang Show Ep 109</button>.
+          </p>
+
+          <h2>2. Nhật ký nâng cấp hệ thống Fanpage Tô Chấn Phong</h2>
+          <div class="changelog-grid">
+            <div class="changelog-item">
+              <strong>Chuẩn hóa UTF-8 &amp; Định danh</strong>
+              <span>Đồng bộ chính xác tên Page <code>Tô Chấn Phong</code> (ID: <code>184545228278923</code>) giữa <code>page_manager.py</code>, <code>memory.json</code> và <code>pages.json</code>.</span>
+            </div>
+            <div class="changelog-item">
+              <strong>Khôi phục Brand Memory</strong>
+              <span>Khôi phục đầy đủ tiếng Việt &amp; 4 tuyến bài: Ca khúc yêu thích, Dấu ấn âm nhạc, Kỷ niệm cùng bài hát, Khoảnh khắc sân khấu.</span>
+            </div>
+            <div class="changelog-item">
+              <strong>Kho dữ liệu 196 Video</strong>
+              <span>Lưu trữ cố định <code>youtube_songs.json</code> và khởi tạo thư mục media riêng <code>media/to_chan_phong</code>.</span>
+            </div>
+          </div>
+
+          <h2 id="fanpage-post">3. Bản bài viết sẵn sàng đăng Fanpage</h2>
+          <div class="fanpage-draft-box">
+            <div class="draft-header">
+              <span class="draft-title">Đích đăng: Fanpage Tô Chấn Phong (ID: 184545228278923)</span>
+              <button type="button" class="copy-btn" id="copyPostBtn">Sao chép nội dung bài đăng</button>
+            </div>
+            <pre class="draft-pre" id="fanpagePostText">✨ Dấu ấn âm nhạc
+
+Có những giai điệu chỉ cần vang lên vài nốt dạo đầu đã đưa ta trở về cả một khung trời kỷ niệm... 🎶
+
+Để những người yêu mến tiếng hát trầm ấm, sâu lắng của ca sĩ Tô Chấn Phong có thể dễ dàng thưởng thức lại trọn vẹn các ca khúc gắn liền với thanh xuân, không gian trang vừa tổng hợp lại danh mục gần 200 bản thu âm CD gốc và những tiết mục Live giàu cảm xúc nhất trên YouTube:
+
+🎵 Những bản tình ca solo lắng đọng:
+• Một Thuở Yêu Người
+• Tình Nồng
+• Kỷ Niệm Nào Vội Tan
+• Hoa Nào Anh Quên
+• Chìm Vào Lãng Quên
+• Quán Cà Phê Vắng
+• Khúc Nhạc Buồn
+• Con Tim Thật Thà
+
+🎤 Những màn song ca đầy kỷ niệm:
+• Dĩ Vãng Nhạt Nhòa &amp; Còn Yêu Em Mãi (cùng Lưu Bích)
+• Dĩ Vãng Nhạt Nhòa, Paroles Paroles &amp; Kỷ Niệm Chiều Mưa (cùng Khánh Hà)
+• Xin Lỗi (cùng Nguyên Hà)
+
+Giữa một buổi chiều bình yên, nếu chọn bật lại một bài hát duy nhất của Tô Chấn Phong ngay lúc này, đâu là ca khúc đầu tiên hiện lên trong tâm trí Anh/Chị?
+
+Cùng chia sẻ ca khúc hoặc kỷ niệm Anh/Chị yêu thích về Tô Chấn Phong ở phần bình luận nhé! 💬
+
+#ToChanPhong #YeuMenToChanPhong #AmNhac</pre>
+          </div>
+        </div>
+      </article>
+
+      <!-- Full 196-Track Archive -->
+      <section class="archive-section" id="kho-luu-tru">
+        <div class="archive-header">
+          <h2 class="archive-title">Kho Lưu Trữ 196 Bản Thu &amp; Video YouTube</h2>
+          <span class="archive-count" id="filteredCountText">Hiển thị 196 / 196 bản thu</span>
+        </div>
+
+        <div class="archive-toolbar">
+          <input
+            type="search"
+            id="searchInput"
+            class="search-input"
+            placeholder="Tìm tên bài hát, ca sĩ song ca (Lưu Bích, Khánh Hà...), kênh phát hành..."
+          />
+          <div class="filter-tabs" id="filterTabs">
+            <button type="button" class="filter-tab active" data-cat="all">Tất cả (196)</button>
+            <button type="button" class="filter-tab" data-cat="solo">Solo</button>
+            <button type="button" class="filter-tab" data-cat="duet">Song ca &amp; Giao lưu</button>
+            <button type="button" class="filter-tab" data-cat="album">Album CD &amp; Liveshow</button>
+            <button type="button" class="filter-tab" data-cat="karaoke">Karaoke / Beat</button>
+          </div>
+        </div>
+
+        <div class="track-table-wrap">
+          <table class="track-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tên bản thu / Ca khúc</th>
+                <th>Phân loại</th>
+                <th>Thời lượng</th>
+                <th>Lượt xem</th>
+                <th>Link</th>
+              </tr>
+            </thead>
+            <tbody id="trackTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const SONGS = [{"id": "_2jog23ZMI4", "title": "Một Thuở Yêu Người - Tô Chấn Phong  | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:36", "views": "3.494.078 lượt xem", "viewsNum": 3494078, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=_2jog23ZMI4", "category": "solo"}, {"id": "qUbF2GNPejo", "title": "PBN 26 | Lưu Bích & Tô Chấn Phong - Dĩ Vãng Nhạt Nhòa", "channel": "Thuy Nga", "length": "4:12", "views": "2.591.596 lượt xem", "viewsNum": 2591596, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=qUbF2GNPejo", "category": "duet"}, {"id": "MZwAmWrKAxI", "title": "Tình Nồng - Tô Chấn Phong | Live at Mây Saigon", "channel": "Mây Saigon Official ", "length": "5:32", "views": "1.901.146 lượt xem", "viewsNum": 1901146, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=MZwAmWrKAxI", "category": "solo"}, {"id": "rNiKLx59YzE", "title": "Dĩ Vãng Nhạt Nhoà - Khánh Hà & Tô Chấn Phong - LIVE at SGC Ballroom", "channel": "SAIGON GRAND CENTER", "length": "4:05", "views": "1.151.932 lượt xem", "viewsNum": 1151932, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=rNiKLx59YzE", "category": "duet"}, {"id": "iEXntmow2LQ", "title": "Lưu Bích ft. Tô Chấn Phong - Dĩ Vãng Nhạt Nhòa (Audio)", "channel": "Luu Bich OFFICIAL", "length": "4:01", "views": "855.200 lượt xem", "viewsNum": 855200, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=iEXntmow2LQ", "category": "duet"}, {"id": "gcscFZzLuwM", "title": "Kỷ Niệm Nào Vội Tan - Tô Chấn Phong | Live at Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:56", "views": "478.769 lượt xem", "viewsNum": 478769, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=gcscFZzLuwM", "category": "solo"}, {"id": "Gs5zlStwujk", "title": "Lưu Bích ft. Tô Chấn Phong - Còn Yêu Em Mãi (Audio)", "channel": "Luu Bich OFFICIAL", "length": "5:29", "views": "449.552 lượt xem", "viewsNum": 449552, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=Gs5zlStwujk", "category": "duet"}, {"id": "dCsSYxpDQfg", "title": "TÌNH NỒNG - Tô Chấn Phong || Video Lyrics / Kara", "channel": "Xiao Baobei", "length": "5:07", "views": "426.699 lượt xem", "viewsNum": 426699, "published": "9 năm trước", "url": "https://www.youtube.com/watch?v=dCsSYxpDQfg", "category": "solo"}, {"id": "A9HcsKqfNgI", "title": "Nhạc thử loa chất lượng cao | Đường Xưa - Tô Chấn Phong", "channel": "Long Tran", "length": "4:23", "views": "394.987 lượt xem", "viewsNum": 394987, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=A9HcsKqfNgI", "category": "solo"}, {"id": "xoAHXPziLPs", "title": "Khúc Nhạc Buồn   Tô Chấn Phong", "channel": "tran trung hieu", "length": "1:05:00", "views": "367.861 lượt xem", "viewsNum": 367861, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=xoAHXPziLPs", "category": "album"}, {"id": "a-YA_VzAHG8", "title": "Xin Lỗi - Tô Chấn Phong & Nguyên Hà | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:42", "views": "325.374 lượt xem", "viewsNum": 325374, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=a-YA_VzAHG8", "category": "duet"}, {"id": "_g8F8Q5aYaY", "title": "Những Tuyển Phẩm Hay Nhất Của - Tô Chấn Phong", "channel": "NTS MUSIC", "length": "1:41:23", "views": "266.431 lượt xem", "viewsNum": 266431, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=_g8F8Q5aYaY", "category": "album"}, {"id": "9A-a-1UXZlE", "title": "Còn Yêu Em Mãi - Lưu Bích & Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:53", "views": "245.844 lượt xem", "viewsNum": 245844, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=9A-a-1UXZlE", "category": "duet"}, {"id": "eXg_GpZ39iI", "title": "Full Khánh Hà, Tô Chấn Phong Mới Nhất - Tuyển Tập Những Bài Hát Nhạc Tình Muôn Thuở Hay Nhất", "channel": "Mây Saigon Official ", "length": "45:38", "views": "232.099 lượt xem", "viewsNum": 232099, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=eXg_GpZ39iI", "category": "album"}, {"id": "ga1x648_8-w", "title": "Hoa Nào Hoa Trắng - Tô Chấn Phong | LIVE at SGC Ballroom", "channel": "SAIGON GRAND CENTER", "length": "4:50", "views": "215.097 lượt xem", "viewsNum": 215097, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=ga1x648_8-w", "category": "solo"}, {"id": "ToLU9OFrTDA", "title": "Tuấn Ngọc, Khánh Hà, Thúy Anh, Lưu Bích, Tô Chấn Phong - Stand By Me | Official Music Video", "channel": "Mây Saigon Official ", "length": "4:05", "views": "186.080 lượt xem", "viewsNum": 186080, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=ToLU9OFrTDA", "category": "duet"}, {"id": "qyOqxgmPTa0", "title": "Dĩ Vãng Nhạt Nhòa - Lưu Bích & Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "3:47", "views": "163.260 lượt xem", "viewsNum": 163260, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=qyOqxgmPTa0", "category": "duet"}, {"id": "f2ZwNt0O_D8", "title": "Liveshow Khánh Hà, Tô Chấn Phong | Nhạc Tình Muôn Thuở | Full Program | Đêm Nhạc Trữ Tình 2023", "channel": "Phim Hài Hay - Phim Hài Việt", "length": "2:13:15", "views": "151.300 lượt xem", "viewsNum": 151300, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=f2ZwNt0O_D8", "category": "album"}, {"id": "QATli6-lSi8", "title": "Ep 109 | Khánh Hà - Tô Chấn Phong: “Nếu không gặp Hà thì tôi không nghĩ mình sẽ là ca sĩ”", "channel": "NGUYÊN KHANG", "length": "50:46", "views": "148.697 lượt xem", "viewsNum": 148697, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=QATli6-lSi8", "category": "album"}, {"id": "GwLhXWt6jqA", "title": "QUÁN CÀ PHÊ VẮNG-TÔ CHẤN PHONG", "channel": "NHẠC PHẬT GIÁO", "length": "5:13", "views": "138.249 lượt xem", "viewsNum": 138249, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=GwLhXWt6jqA", "category": "solo"}, {"id": "uXgJYwRWeH4", "title": "Livestream giới thiệu show Xuân Vui Ca với cô Marie Tô, Khánh Hà, Tô Chấn Phong", "channel": "Thuy Nga", "length": "1:06:21", "views": "131.609 lượt xem", "viewsNum": 131609, "published": "Phát trực tiếp 2 năm trước", "url": "https://www.youtube.com/watch?v=uXgJYwRWeH4", "category": "album"}, {"id": "18fHYIiGuXM", "title": "Một thuở yêu người (Một thuở yêu em) - Tô Chấn Phong (Full Album HQ 1997)", "channel": "Uyên Lê (Tangerine)", "length": "1:06:28", "views": "130.423 lượt xem", "viewsNum": 130423, "published": "13 năm trước", "url": "https://www.youtube.com/watch?v=18fHYIiGuXM", "category": "album"}, {"id": "RJcIMLzAuc4", "title": "PAROLES PAROLES - Khánh Hà & Tô Chấn Phong | LIVE at SGC Ballroom", "channel": "SAIGON GRAND CENTER", "length": "4:11", "views": "127.535 lượt xem", "viewsNum": 127535, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=RJcIMLzAuc4", "category": "duet"}, {"id": "QFmvpXYKtOs", "title": "Tình Đầu Chưa Nguôi - Karaoke - Tô Chấn Phong", "channel": "Kênh Review Giải Trí", "length": "4:41", "views": "126.154 lượt xem", "viewsNum": 126154, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=QFmvpXYKtOs", "category": "karaoke"}, {"id": "cVNGoDn5mt8", "title": "Karaoke Một thuở yêu người - Tô Chấn Phong", "channel": "Never say Never", "length": "4:45", "views": "125.179 lượt xem", "viewsNum": 125179, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=cVNGoDn5mt8", "category": "karaoke"}, {"id": "2flpfhrbtdM", "title": "Hoa Nào Anh Quên", "channel": "To Chan Phong - Topic", "length": "4:43", "views": "120.106 lượt xem", "viewsNum": 120106, "published": "", "url": "https://www.youtube.com/watch?v=2flpfhrbtdM", "category": "solo"}, {"id": "iITgwpE1zJw", "title": "2 Thế Hệ Hát NHẠC TÌNH PHÁP Nghe 1000 Lần Vẫn Hay | THÙY DUNG, KHÁNH HÀ, TÔ CHẤN PHONG, TUẤN NGHĨA", "channel": "Top Nhạc Việt", "length": "1:11:09", "views": "108.578 lượt xem", "viewsNum": 108578, "published": "8 tháng trước", "url": "https://www.youtube.com/watch?v=iITgwpE1zJw", "category": "album"}, {"id": "TSADVrL2BQE", "title": "CHÌM VÀO LÃNG QUÊN - TÔ CHẤN PHONG", "channel": "quoc kiet dang", "length": "6:01", "views": "98.127 lượt xem", "viewsNum": 98127, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=TSADVrL2BQE", "category": "solo"}, {"id": "60FLHR6g8Ho", "title": "Một Thuở Yêu Người - Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:35", "views": "85.738 lượt xem", "viewsNum": 85738, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=60FLHR6g8Ho", "category": "solo"}, {"id": "aCQvpgLPTkw", "title": "Lưu Bích Tô Chấn Phong    Ta Phụ Nhau Rồi", "channel": "Vọng cổ Việt Nam", "length": "4:55", "views": "80.326 lượt xem", "viewsNum": 80326, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=aCQvpgLPTkw", "category": "duet"}, {"id": "S6bOTHpeM-A", "title": "[Playlist] Tuyển tập Tô Chấn Phong", "channel": "BlueSky", "length": "1:21:12", "views": "76.692 lượt xem", "viewsNum": 76692, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=S6bOTHpeM-A", "category": "album"}, {"id": "2lhdJ-jlL3Q", "title": "Dĩ Vãng Nhạt Nhòa - Khánh Hà & Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "3:41", "views": "75.983 lượt xem", "viewsNum": 75983, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=2lhdJ-jlL3Q", "category": "duet"}, {"id": "pqAGI36MMcw", "title": "Yêu Một Người - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "3:56", "views": "67.233 lượt xem", "viewsNum": 67233, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=pqAGI36MMcw", "category": "solo"}, {"id": "JRuIIBEtTmA", "title": "Lưu Bích ft. Tô Chấn Phong - Ta Phụ Nhau Rồi REMIX (Audio)", "channel": "Luu Bich OFFICIAL", "length": "4:38", "views": "50.591 lượt xem", "viewsNum": 50591, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=JRuIIBEtTmA", "category": "duet"}, {"id": "kUhANArKB-E", "title": "Tô Chấn Phong - Em Di", "channel": "Yuen Siu (CAT)", "length": "4:37", "views": "48.315 lượt xem", "viewsNum": 48315, "published": "18 năm trước", "url": "https://www.youtube.com/watch?v=kUhANArKB-E", "category": "solo"}, {"id": "PIA78owo_qU", "title": "Karaoke - Quán cafe vắng - Tô Chấn Phong", "channel": "Karaoke Nhạc Khánh Đôn", "length": "4:54", "views": "45.028 lượt xem", "viewsNum": 45028, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=PIA78owo_qU", "category": "karaoke"}, {"id": "WJ_RiZRZTxQ", "title": "LIVESTREAM VỚI KHÁNH HÀ - TÔ CHẤN PHONG - KỲ DUYÊN", "channel": "Thuy Nga", "length": "53:33", "views": "44.588 lượt xem", "viewsNum": 44588, "published": "Phát trực tiếp 8 tháng trước", "url": "https://www.youtube.com/watch?v=WJ_RiZRZTxQ", "category": "album"}, {"id": "qfoYABylGlM", "title": "Tô Chấn Phong Tuyển Chọn - The Best Of Tô Chấn Phong 1999 - Lossless Audio", "channel": "Bình Nguyên PBN", "length": "23:42", "views": "43.861 lượt xem", "viewsNum": 43861, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=qfoYABylGlM", "category": "album"}, {"id": "PrrlazQRUVE", "title": "Những Buổi Chiều Vàng - Tô Chấn Phong", "channel": "La Rose", "length": "4:15", "views": "41.733 lượt xem", "viewsNum": 41733, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=PrrlazQRUVE", "category": "solo"}, {"id": "l20lspUNO8Y", "title": "Dĩ Vãng Nhạt Nhòa - Khánh Hà & Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "3:55", "views": "41.526 lượt xem", "viewsNum": 41526, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=l20lspUNO8Y", "category": "duet"}, {"id": "9iT7nzwOohs", "title": "Tình Nồng  - Tô Chấn Phong | (4k Lossless) | CD nhạc gốc hải ngoại | Bản hay nhất mọi thời đại", "channel": "CD MUSIC REWIND - CAHOISASHIMI", "length": "5:09", "views": "41.321 lượt xem", "viewsNum": 41321, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=9iT7nzwOohs", "category": "solo"}, {"id": "KDlEHzqKlcY", "title": "Tô Chấn Phong, Khánh Hà đốt cháy khán phòng với Liên Khúc \" Kỷ Niệm Nào Vội Tan, Tiễn Anh Trong Mưa", "channel": "Mây Saigon Official ", "length": "15:16", "views": "41.114 lượt xem", "viewsNum": 41114, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=KDlEHzqKlcY", "category": "duet"}, {"id": "K5nWjQ_T9L0", "title": "Mashup Gặp Lại Nhau Khi Mùa Hoa Nở - Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "5:50", "views": "41.032 lượt xem", "viewsNum": 41032, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=K5nWjQ_T9L0", "category": "solo"}, {"id": "MNOV-H1MfLI", "title": "Quán cà fê vắng ( Tô Chấn Phong )", "channel": "UnlimiteD AI", "length": "4:32", "views": "37.907 lượt xem", "viewsNum": 37907, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=MNOV-H1MfLI", "category": "solo"}, {"id": "3mE_wTf_YKA", "title": "Từ Khi Biết Em - Tô Chấn Phong", "channel": "TU", "length": "3:30", "views": "37.820 lượt xem", "viewsNum": 37820, "published": "13 năm trước", "url": "https://www.youtube.com/watch?v=3mE_wTf_YKA", "category": "solo"}, {"id": "Ipx46vTa1MM", "title": "Tô Chấn Phong, Lưu Bích Những Ca Khúc Hay Nhất", "channel": "Apony - TINH HOA THƯƠNG ĐẠO", "length": "59:57", "views": "37.204 lượt xem", "viewsNum": 37204, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=Ipx46vTa1MM", "category": "album"}, {"id": "VFma9obAgb4", "title": "[Karaoke] Hoa Nào Anh Quên - Tô Chấn Phong", "channel": "Binh Vo", "length": "4:45", "views": "32.987 lượt xem", "viewsNum": 32987, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=VFma9obAgb4", "category": "karaoke"}, {"id": "f7uCVivy8Ug", "title": "Tình Nồng - Tô Chấn Phong | Official MV | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "5:33", "views": "32.743 lượt xem", "viewsNum": 32743, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=f7uCVivy8Ug", "category": "solo"}, {"id": "VZyzRgfAD2U", "title": "Khúc Nhạc Buồn - Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:04", "views": "31.825 lượt xem", "viewsNum": 31825, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=VZyzRgfAD2U", "category": "solo"}, {"id": "D6UvwbaYpEU", "title": "Tô Chấn Phong, Lưu Bích Những Ca Khúc Hay Nhất", "channel": "SỨC KHỎE & SẮC ĐẸP", "length": "59:57", "views": "30.262 lượt xem", "viewsNum": 30262, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=D6UvwbaYpEU", "category": "album"}, {"id": "EwAgwgPeyH4", "title": "Kỷ Niệm Nào Vội Tan - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "5:01", "views": "28.762 lượt xem", "viewsNum": 28762, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=EwAgwgPeyH4", "category": "solo"}, {"id": "Bz59ro60XDQ", "title": "Đêm Nhạc Tô Chấn Phong, Khánh Hà \" Tình Nồng Full show \" Live show Nhạc Tình Tại Sài Gòn Bất Hủ", "channel": "Mây Saigon Official ", "length": "1:10:23", "views": "28.289 lượt xem", "viewsNum": 28289, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=Bz59ro60XDQ", "category": "album"}, {"id": "Pg1RBjDw78E", "title": "Tình Đợi Mong | Tô Chấn Phong", "channel": "Nguyễn Dũng", "length": "4:38", "views": "28.068 lượt xem", "viewsNum": 28068, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=Pg1RBjDw78E", "category": "solo"}, {"id": "Z6NaVAA5PEw", "title": "Quán Cafe Vắng - Tô Chấn Phong  | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:46", "views": "26.520 lượt xem", "viewsNum": 26520, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=Z6NaVAA5PEw", "category": "solo"}, {"id": "RyeF_C7Kk_Y", "title": "CA KHÚC CỦA LÃNG TỬ TÔ CHẤN PHONG", "channel": "Thuy2012 Truong", "length": "1:46:04", "views": "24.247 lượt xem", "viewsNum": 24247, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=RyeF_C7Kk_Y", "category": "album"}, {"id": "IXk4azDSKfw", "title": "KARAOKE - Dĩ Vãng Nhạt Nhòa - Lưu Bích, Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "3:58", "views": "23.423 lượt xem", "viewsNum": 23423, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=IXk4azDSKfw", "category": "karaoke"}, {"id": "N2hwjIzoU1Y", "title": "Lưu Bích ft. Tô Chấn Phong - Ta Phụ Nhau Rồi (Audio)", "channel": "Dạy Kèm Quy Nhơn", "length": "9:50", "views": "21.984 lượt xem", "viewsNum": 21984, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=N2hwjIzoU1Y", "category": "duet"}, {"id": "aE6I32Mkoo4", "title": "Màu tóc rối - Tô Chấn Phong", "channel": "TrinhNTD", "length": "4:04", "views": "21.942 lượt xem", "viewsNum": 21942, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=aE6I32Mkoo4", "category": "solo"}, {"id": "GueNGy2ba8U", "title": "Hoa Nào Anh Quên - F35 Cover x Tô Chấn Phong | Chạm Music Box TÌnh Khúc Phòng Trà", "channel": "Chạm Music Box Tình Khúc Phòng Trà ", "length": "4:18", "views": "21.601 lượt xem", "viewsNum": 21601, "published": "8 tháng trước", "url": "https://www.youtube.com/watch?v=GueNGy2ba8U", "category": "solo"}, {"id": "zpvSWAcS01M", "title": "Chìm Vào Lãng Quên", "channel": "To Chan Phong - Topic", "length": "5:59", "views": "21.181 lượt xem", "viewsNum": 21181, "published": "", "url": "https://www.youtube.com/watch?v=zpvSWAcS01M", "category": "solo"}, {"id": "zGUGoxZIe9k", "title": "Tô Chấn Phong -  Kỷ Niệm Nào Vội Tan", "channel": "Tan Vu", "length": "47:18", "views": "20.845 lượt xem", "viewsNum": 20845, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=zGUGoxZIe9k", "category": "album"}, {"id": "8BuQXYL2mAI", "title": "Yêu Một Người", "channel": "To Chan Phong - Topic", "length": "4:05", "views": "20.779 lượt xem", "viewsNum": 20779, "published": "", "url": "https://www.youtube.com/watch?v=8BuQXYL2mAI", "category": "solo"}, {"id": "lWCWDCwh8KA", "title": "Tô chấn Phong Một thuở yêu người", "channel": "Thuy2012 Truong", "length": "1:17:10", "views": "20.058 lượt xem", "viewsNum": 20058, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=lWCWDCwh8KA", "category": "album"}, {"id": "yAnkwMyD-W4", "title": "Livestream giới thiệu chương trình \"The Shadow - My Valentine\" với Khánh Hà, Tô Chấn Phong, Đình Bảo", "channel": "Thuy Nga", "length": "1:04:21", "views": "19.567 lượt xem", "viewsNum": 19567, "published": "Phát trực tiếp 1 năm trước", "url": "https://www.youtube.com/watch?v=yAnkwMyD-W4", "category": "album"}, {"id": "Qy7IjP_5bNI", "title": "TA PHỤ NHAU RỒI - Tô Chấn Phong &  Lưu Bích", "channel": "GiuSe MạC", "length": "4:57", "views": "19.030 lượt xem", "viewsNum": 19030, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=Qy7IjP_5bNI", "category": "duet"}, {"id": "oL9bWbqq78E", "title": "Một thuở yêu người - Tô Chấn Phong - Ban Mê Tím-2019", "channel": "Ban Mê Tím - 2019", "length": "4:34", "views": "18.977 lượt xem", "viewsNum": 18977, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=oL9bWbqq78E", "category": "solo"}, {"id": "CJlkWvsijd0", "title": "Kỷ Niệm Nào Vội Tan (MV Lyrics) ll Tô Chấn Phong ll LV. Khúc Lan", "channel": "QQ Truong", "length": "4:40", "views": "18.020 lượt xem", "viewsNum": 18020, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=CJlkWvsijd0", "category": "solo"}, {"id": "uc75kButZ7s", "title": "KARAOKE - Yêu Một Người - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "4:20", "views": "17.808 lượt xem", "viewsNum": 17808, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=uc75kButZ7s", "category": "karaoke"}, {"id": "NrjlAl1GcYk", "title": "Quán Café Vắng ♫ ♫ ♫ Tô Chấn Phong", "channel": "Chic Bon (Music & Beauties)", "length": "5:04", "views": "17.738 lượt xem", "viewsNum": 17738, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=NrjlAl1GcYk", "category": "solo"}, {"id": "96hc9ysRLwA", "title": "Con Tim Thật Thà - Tô Chấn Phong | Live at Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:28", "views": "16.863 lượt xem", "viewsNum": 16863, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=96hc9ysRLwA", "category": "solo"}, {"id": "7OHibs92FIQ", "title": "Hoa Nào Anh Quên - Tô Chấn Phong | Tình Khúc Bất Hủ Hay Nhất Mọi Thời Đại", "channel": "Dòng Nhạc Phòng Trà", "length": "4:44", "views": "16.230 lượt xem", "viewsNum": 16230, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=7OHibs92FIQ", "category": "solo"}, {"id": "8F5GUv600YM", "title": "Tô Chấn Phong -# nhạc Hoa #- Tâm trạng.", "channel": "Phú Nguyễn", "length": "1:05:00", "views": "15.383 lượt xem", "viewsNum": 15383, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=8F5GUv600YM", "category": "album"}, {"id": "EAnh9BivLCc", "title": "Paroles Paroles - Khánh Hà & Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:50", "views": "14.889 lượt xem", "viewsNum": 14889, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=EAnh9BivLCc", "category": "duet"}, {"id": "iPPGuUKXA2g", "title": "Tô Chấn Phong Chia Sẻ Bí Quyết Giữ Lửa Trong Hôn Nhân Không Phải Cánh Mày Râu Nào Cũng Biết", "channel": "F Music", "length": "5:00", "views": "14.538 lượt xem", "viewsNum": 14538, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=iPPGuUKXA2g", "category": "solo"}, {"id": "qJCLrhPsIBY", "title": "Hoa Nào Anh Quên - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:16", "views": "14.510 lượt xem", "viewsNum": 14510, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=qJCLrhPsIBY", "category": "solo"}, {"id": "nup2i_5XEvw", "title": "PAROLES PAROLES - KHÁNH HÀ & TÔ CHẤN PHONG | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "5:01", "views": "14.478 lượt xem", "viewsNum": 14478, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=nup2i_5XEvw", "category": "duet"}, {"id": "v_ypIe8ibEk", "title": "Một Thuở Yêu Người - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:27", "views": "14.380 lượt xem", "viewsNum": 14380, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=v_ypIe8ibEk", "category": "solo"}, {"id": "4Hc3J0uUyMA", "title": "Một Thuở Yêu Người & Những Buổi Chiều Vàng   Tô Chấn Phong", "channel": "Quoc Anh Le", "length": "8:33", "views": "14.021 lượt xem", "viewsNum": 14021, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=4Hc3J0uUyMA", "category": "solo"}, {"id": "d8wCJL4o4yc", "title": "Biển Tình Yêu - Tô Chấn Phong; Khánh Hà", "channel": "Nickie Hoàng Kim Thái Hanh", "length": "4:23", "views": "12.282 lượt xem", "viewsNum": 12282, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=d8wCJL4o4yc", "category": "duet"}, {"id": "9f_Xsrt_TXU", "title": "Một Thuở Yêu Người - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:31", "views": "12.093 lượt xem", "viewsNum": 12093, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=9f_Xsrt_TXU", "category": "solo"}, {"id": "yTPkggghPJM", "title": "Mãi yêu - Tô Chấn Phong, Lưu Bích", "channel": "Khoi Quang", "length": "4:20", "views": "11.860 lượt xem", "viewsNum": 11860, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=yTPkggghPJM", "category": "duet"}, {"id": "dLrqrxF1fR0", "title": "Hoa Nào Anh Quên - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:21", "views": "11.579 lượt xem", "viewsNum": 11579, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=dLrqrxF1fR0", "category": "solo"}, {"id": "kVIYZ0VWwGk", "title": "Paroles paroles - Khánh Hà + Tô Chấn Phong 28/2/2023", "channel": "Lê Chi", "length": "6:15", "views": "11.566 lượt xem", "viewsNum": 11566, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=kVIYZ0VWwGk", "category": "duet"}, {"id": "bTEtlSwzZDo", "title": "Dĩ Vãng Nhạt Nhoà - Lưu Bích & Tô Chấn Phong | Official Music Video | Live at Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:14", "views": "11.219 lượt xem", "viewsNum": 11219, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=bTEtlSwzZDo", "category": "duet"}, {"id": "yXDzr39ZJYQ", "title": "Khúc Nhạc Buồn   Tô Chấn Phong", "channel": "Trieu Khang HASR", "length": "4:04", "views": "10.967 lượt xem", "viewsNum": 10967, "published": "11 năm trước", "url": "https://www.youtube.com/watch?v=yXDzr39ZJYQ", "category": "solo"}, {"id": "mEt80-AaIFY", "title": "Live Show Nguyên Hà - Lê Hiếu - Khánh Hà - Tô Chấn Phong | Nhắm Mắt Thấy Mùa Hè | Tình Khúc Đặc Biệt", "channel": "Mây Saigon Official ", "length": "2:38:48", "views": "9.969 lượt xem", "viewsNum": 9969, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=mEt80-AaIFY", "category": "album"}, {"id": "o-eMdQkZZ7c", "title": "Kỷ Niệm Chiều Mưa   Tô Chấn Phong & Khánh Hà", "channel": "manhhakien", "length": "4:14", "views": "9.411 lượt xem", "viewsNum": 9411, "published": "14 năm trước", "url": "https://www.youtube.com/watch?v=o-eMdQkZZ7c", "category": "duet"}, {"id": "N0d6vJlQF04", "title": "Một Thuở Yêu Người/Tô Chấn Phong/Các Ca Khúc Chọn Lọc Tô Chấn Phong", "channel": "Trong Phuoc Nguyen", "length": "1:05:04", "views": "8.916 lượt xem", "viewsNum": 8916, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=N0d6vJlQF04", "category": "album"}, {"id": "nefvMqqOm1M", "title": "MỘT THUỞ YÊU NGƯỜI-TÔ CHẤN PHONG", "channel": "NHẠC PHẬT GIÁO", "length": "4:33", "views": "8.434 lượt xem", "viewsNum": 8434, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=nefvMqqOm1M", "category": "solo"}, {"id": "gdKTAMuKpEg", "title": "Yeu Em Tu Do Mat Trao - To Chan Phong", "channel": "kirby672", "length": "3:51", "views": "8.124 lượt xem", "viewsNum": 8124, "published": "14 năm trước", "url": "https://www.youtube.com/watch?v=gdKTAMuKpEg", "category": "solo"}, {"id": "Pg8W8xYJPUc", "title": "Kỷ Niệm Nào Vội Tan- Tô Chấn Phong", "channel": "Will & Dex", "length": "4:41", "views": "7.605 lượt xem", "viewsNum": 7605, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=Pg8W8xYJPUc", "category": "solo"}, {"id": "4KkKQEIinK0", "title": "Hoa nào anh quên (Khúc Lan)(Tô Chấn Phong)", "channel": "MyMM 18life", "length": "4:41", "views": "6.649 lượt xem", "viewsNum": 6649, "published": "18 năm trước", "url": "https://www.youtube.com/watch?v=4KkKQEIinK0", "category": "solo"}, {"id": "F-s1SMVm_No", "title": "Tình Nồng - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:44", "views": "6.248 lượt xem", "viewsNum": 6248, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=F-s1SMVm_No", "category": "solo"}, {"id": "sNH6631OUqM", "title": "HOA NÀO ANH QUÊN | NHẠC HOA LỜI VIỆT KHÚC LAN | CA SĨ TÔ CHẤN PHONG | AI COVER", "channel": "Radio 99FM", "length": "4:10", "views": "6.091 lượt xem", "viewsNum": 6091, "published": "7 tháng trước", "url": "https://www.youtube.com/watch?v=sNH6631OUqM", "category": "solo"}, {"id": "Wq9NvjLRaH8", "title": "Em Đi - Tô Chấn Phong", "channel": "trcnsound", "length": "4:34", "views": "5.912 lượt xem", "viewsNum": 5912, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=Wq9NvjLRaH8", "category": "solo"}, {"id": "Vcnjm91Qw1k", "title": "Con tim thật thà  - Tô Chấn Phong", "channel": "Tu Minh", "length": "4:43", "views": "5.886 lượt xem", "viewsNum": 5886, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=Vcnjm91Qw1k", "category": "solo"}, {"id": "NEFgh0Z632k", "title": "Những buổi chiều vàng   Tô Chấn Phong", "channel": "Hạnh Ngộ Trà", "length": "4:10", "views": "5.804 lượt xem", "viewsNum": 5804, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=NEFgh0Z632k", "category": "solo"}, {"id": "RM_-XmbB4Ig", "title": "KARAOKE - Hoa Nào Anh Quên - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "4:44", "views": "5.782 lượt xem", "viewsNum": 5782, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=RM_-XmbB4Ig", "category": "karaoke"}, {"id": "K0QFTZ-WHY8", "title": "KARAOKE - Một Thuở Yêu Người - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "4:35", "views": "5.549 lượt xem", "viewsNum": 5549, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=K0QFTZ-WHY8", "category": "karaoke"}, {"id": "B7dtQKQh_ys", "title": "Giữ Lại Thanh Xuân 5 | TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "1:15:31", "views": "5.165 lượt xem", "viewsNum": 5165, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=B7dtQKQh_ys", "category": "album"}, {"id": "vwZP0-w6ATM", "title": "KARAOKE - Kỷ Niệm Nào Vội Tan - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "4:44", "views": "4.997 lượt xem", "viewsNum": 4997, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=vwZP0-w6ATM", "category": "karaoke"}, {"id": "DnrVch9HcEw", "title": "Con Tim Thật Thà - Tô Chấn Phong | LIVE at Saigon Grand Center", "channel": "FGEN Music", "length": "3:58", "views": "4.888 lượt xem", "viewsNum": 4888, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=DnrVch9HcEw", "category": "solo"}, {"id": "jfiydr4xshs", "title": "KHÚC NHẠC BUỒN | ALBUM | THANH HÀ & TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "46:11", "views": "4.835 lượt xem", "viewsNum": 4835, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=jfiydr4xshs", "category": "album"}, {"id": "lJLMuapweOw", "title": "Khúc Nhạc Buồn - Tô Chấn Phong - Nhạc hoa , lời việt : Khúc Lan", "channel": "Rose Nguyen", "length": "4:08", "views": "4.479 lượt xem", "viewsNum": 4479, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=lJLMuapweOw", "category": "solo"}, {"id": "dmn7eHj7ygw", "title": "Chiều Vàng Nhung Nhớ", "channel": "To Chan Phong - Topic", "length": "5:18", "views": "4.477 lượt xem", "viewsNum": 4477, "published": "", "url": "https://www.youtube.com/watch?v=dmn7eHj7ygw", "category": "solo"}, {"id": "PtaaOjegU6I", "title": "Ep 109 | Khánh Hà - Tô Chấn Phong: “Nếu không gặp Hà thì tôi không nghĩ mình sẽ là ca sĩ”", "channel": "The Khang Show - Talkshow", "length": "50:46", "views": "4.454 lượt xem", "viewsNum": 4454, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=PtaaOjegU6I", "category": "album"}, {"id": "6CqvQ_XJGLk", "title": "Yêu Một Người - Tô Chấn Phong live | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "3:57", "views": "4.304 lượt xem", "viewsNum": 4304, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=6CqvQ_XJGLk", "category": "solo"}, {"id": "TtqbDSQ6jm8", "title": "Tô Chấn Phong - Kỷ Niệm Nào Vội Tan | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:50", "views": "3.865 lượt xem", "viewsNum": 3865, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=TtqbDSQ6jm8", "category": "solo"}, {"id": "TZjZaQDWrzc", "title": "Rồi mai tôi đưa em   Tô Chấn Phong", "channel": "BinBy", "length": "5:04", "views": "3.742 lượt xem", "viewsNum": 3742, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=TZjZaQDWrzc", "category": "solo"}, {"id": "_7MyYKuMja0", "title": "Còn Yêu Em Mãi | Tô Chấn Phong & Lưu Bích - Lữ Legacy 06.01.2024", "channel": "Bich Thuann Official", "length": "4:48", "views": "3.687 lượt xem", "viewsNum": 3687, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=_7MyYKuMja0", "category": "duet"}, {"id": "raI5AmEO1G4", "title": "THE BEST OF - TÔ CHẤN PHONG ➤ Khúc Nhạc Buồn | Tình Nồng | Một Thuở Yêu Người | Dĩ Vãng Nhạt Nhòa", "channel": "B-MUSIC", "length": "1:04:50", "views": "3.526 lượt xem", "viewsNum": 3526, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=raI5AmEO1G4", "category": "album"}, {"id": "8qQx-sSpH4Y", "title": "NHẠC XƯA CHỈ CÒN MÌNH ANH - ANH TÚ  TÔ CHẤN PHONG LÂM NHẬT TIẾN  NGUYỄN", "channel": "Thuy2012 Truong", "length": "1:01:30", "views": "3.410 lượt xem", "viewsNum": 3410, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=8qQx-sSpH4Y", "category": "album"}, {"id": "JQelcO9-ohY", "title": "Huyền Thoại TÔ CHẤN PHONG - Thanh Xuân Của Biết Bao Thế Hệ", "channel": "Apony - TINH HOA THƯƠNG ĐẠO", "length": "1:18:59", "views": "3.376 lượt xem", "viewsNum": 3376, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=JQelcO9-ohY", "category": "album"}, {"id": "elq3g57Fq1o", "title": "Kỷ Niệm Chiều Mưa _Tô Chấn Phong - Nguyên Hà", "channel": "rongtrang2526", "length": "4:20", "views": "3.352 lượt xem", "viewsNum": 3352, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=elq3g57Fq1o", "category": "duet"}, {"id": "TFzlQCmcFSo", "title": "Hoa Nào Anh Quên - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "4:16", "views": "3.306 lượt xem", "viewsNum": 3306, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=TFzlQCmcFSo", "category": "solo"}, {"id": "w_GdFD-KZGc", "title": "KARAOKE - Quán Cafe Vắng - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "4:58", "views": "3.297 lượt xem", "viewsNum": 3297, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=w_GdFD-KZGc", "category": "karaoke"}, {"id": "Ca0apLIN6dc", "title": "Kỷ Niệm Nào Vội Tan - Tô Chấn Phong | Official Music Video | Mây Saigon", "channel": "Mây Saigon Official ", "length": "5:04", "views": "3.137 lượt xem", "viewsNum": 3137, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=Ca0apLIN6dc", "category": "solo"}, {"id": "UJ6FrLWw20A", "title": "Khúc Nhạc Buồn/ Bài hát làm nên tên tuổi ca sĩ Tô Chấn Phong", "channel": "A.I Cover Music", "length": "4:37", "views": "3.107 lượt xem", "viewsNum": 3107, "published": "9 tháng trước", "url": "https://www.youtube.com/watch?v=UJ6FrLWw20A", "category": "solo"}, {"id": "6u0TBDSRytY", "title": "QUÁN CAFE VẮNG - TÔ CHẤN PHONG", "channel": "Lê Chi", "length": "4:40", "views": "3.086 lượt xem", "viewsNum": 3086, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=6u0TBDSRytY", "category": "solo"}, {"id": "V7PIvag6_ss", "title": "Kỷ niệm chiều mưa - Tô Chấn Phong ft. Khánh Hà - Nhạc Tình Muôn Thuở - Mây Lang Thang  23.09.2022", "channel": "Maika Nguyen", "length": "4:46", "views": "3.045 lượt xem", "viewsNum": 3045, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=V7PIvag6_ss", "category": "duet"}, {"id": "Je4tjH0qj7A", "title": "Con tim thật thà-Tô Chấn Phong-guitar cover by Nhật Tiến", "channel": "Song Ngư", "length": "3:34", "views": "3.034 lượt xem", "viewsNum": 3034, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=Je4tjH0qj7A", "category": "solo"}, {"id": "Xc22i9LD7Lc", "title": "LIVESTREAM VỚI KHÁNH HÀ - TÔ CHẤN PHONG - KỲ DUYÊN", "channel": "Thuy Nga TV", "length": "53:37", "views": "2.822 lượt xem", "viewsNum": 2822, "published": "Phát trực tiếp 8 tháng trước", "url": "https://www.youtube.com/watch?v=Xc22i9LD7Lc", "category": "album"}, {"id": "5K342HOZRpw", "title": "MỘNG MƠ | ALBUM | LUU BÍCH - LAN ANH - TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "38:33", "views": "2.683 lượt xem", "viewsNum": 2683, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=5K342HOZRpw", "category": "album"}, {"id": "Jwz1e-p2Wms", "title": "MỐI TÌNH ĐẦU | ALBUM | TÔ CHẤN PHONG - LƯU BÍCH", "channel": "Khanh Ha Official", "length": "46:36", "views": "2.682 lượt xem", "viewsNum": 2682, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=Jwz1e-p2Wms", "category": "album"}, {"id": "DPXUSscnu00", "title": "Tình nồng _ Dĩ vãng nhạt nhòa _ Tô Chấn Phong & những ca khúc để đời.", "channel": "Thảo Thu", "length": "45:19", "views": "2.643 lượt xem", "viewsNum": 2643, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=DPXUSscnu00", "category": "album"}, {"id": "-0Drbw9puCo", "title": "Anh đã quên Mùa Thu. Tô Chấn Phong & Thanh Hà trình bày.", "channel": "Minh Nguyễn ", "length": "4:54", "views": "2.533 lượt xem", "viewsNum": 2533, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=-0Drbw9puCo", "category": "duet"}, {"id": "nz9XOjgIGsA", "title": "Xin một nụ cười  |  Tô Chấn Phong", "channel": "Nguyễn Dũng", "length": "5:17", "views": "2.492 lượt xem", "viewsNum": 2492, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=nz9XOjgIGsA", "category": "solo"}, {"id": "pwYw-FRm1ts", "title": "CHÌM VÀO LÃNG QUÊN | ALBUM | TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "47:02", "views": "2.441 lượt xem", "viewsNum": 2441, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=pwYw-FRm1ts", "category": "album"}, {"id": "onntNAXGFgA", "title": "CHỈ CÒN MÌNH ANH   ANH TÚ   TÔ CHẤN PHONG  LÂM NHẬT TIẾN   NGUYỄN THẮNG", "channel": "An Thuy", "length": "1:01:30", "views": "2.413 lượt xem", "viewsNum": 2413, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=onntNAXGFgA", "category": "album"}, {"id": "5MCDrcUYy28", "title": "Kỷ Niệm Chiều Mưa -Tô Chấn Phong & Khánh Hà", "channel": "Pretty Girl", "length": "4:14", "views": "2.042 lượt xem", "viewsNum": 2042, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=5MCDrcUYy28", "category": "duet"}, {"id": "UAXD2zvxp6I", "title": "Con tim thật thà (ST : Trịnh Nam Sơn) Tô Chấn Phong live ngày 28/2/2023", "channel": "Lê Chi", "length": "4:34", "views": "2.039 lượt xem", "viewsNum": 2039, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=UAXD2zvxp6I", "category": "duet"}, {"id": "0s_IXWiXQCg", "title": "Paroles Paroles | Những Lời Mê Hoặc | Khánh Hà & Tô Chấn Phong (2024-01-07 Show Hà Nội)", "channel": "Bich Thuann Official", "length": "4:26", "views": "1.906 lượt xem", "viewsNum": 1906, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=0s_IXWiXQCg", "category": "duet"}, {"id": "PT5tXRlqpiU", "title": "MỘT THỦA YÊU NGƯỜI ( Tô chấn Phong& Lưu Bích)", "channel": "NGUYỄN TÂM", "length": "4:35", "views": "1.849 lượt xem", "viewsNum": 1849, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=PT5tXRlqpiU", "category": "duet"}, {"id": "t1FIah6XaiQ", "title": "Kỷ Niệm Nào Vội Tan - Tô Chấn Phong live at Mây Sài Gòn | Official Music Video", "channel": "Mây Saigon Official ", "length": "4:57", "views": "1.828 lượt xem", "viewsNum": 1828, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=t1FIah6XaiQ", "category": "solo"}, {"id": "SxpG5xNquFI", "title": "Hoa Nào Anh Quên - Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "4:17", "views": "1.795 lượt xem", "viewsNum": 1795, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=SxpG5xNquFI", "category": "solo"}, {"id": "Fdkk-pCBkpI", "title": "KỶ NIỆM NÀO VỘI TAN | ALBUM | TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "47:18", "views": "1.781 lượt xem", "viewsNum": 1781, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=Fdkk-pCBkpI", "category": "album"}, {"id": "LOxke4I4ga4", "title": "Kỷ Niệm Một Mùa Thu - Tô Chấn Phong & Khánh Hà", "channel": "La Rose", "length": "4:41", "views": "1.653 lượt xem", "viewsNum": 1653, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=LOxke4I4ga4", "category": "duet"}, {"id": "4aF0uXfzHD8", "title": "KARAOKE - Chiều Vàng Nhung Nhớ - Tô Chấn Phong (Beat Chuẩn)", "channel": "Karaoke Nhạc Xưa", "length": "5:18", "views": "1.592 lượt xem", "viewsNum": 1592, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=4aF0uXfzHD8", "category": "karaoke"}, {"id": "l6OFkXkootE", "title": "Con Tim Thật Thà | Tô Chấn Phong | Karaoke Beat Chuẩn", "channel": "Ponymusic Karaoke", "length": "4:34", "views": "1.511 lượt xem", "viewsNum": 1511, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=l6OFkXkootE", "category": "karaoke"}, {"id": "syJnO7uQGA0", "title": "Tô Chấn Phong ft. Anzenchitai - Aoi Hitomino Eris (Biển Thắm)", "channel": "haitrieu", "length": "3:29", "views": "1.497 lượt xem", "viewsNum": 1497, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=syJnO7uQGA0", "category": "solo"}, {"id": "XZngrBgyOoo", "title": "Kỷ Niệm Chiều Mưa -Tô Chấn Phong & Khánh Hà", "channel": "BinBy", "length": "4:08", "views": "1.357 lượt xem", "viewsNum": 1357, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=XZngrBgyOoo", "category": "duet"}, {"id": "AMFbQWoHfnA", "title": "Lời biển gọi | NS Lữ Liên | CS: Tô Chấn Phong & Khánh Hà", "channel": "Tram Huong NT", "length": "4:26", "views": "1.357 lượt xem", "viewsNum": 1357, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=AMFbQWoHfnA", "category": "duet"}, {"id": "sP_tBa1LVNw", "title": "Giữ Lại Thanh Xuân 4 | TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "1:06:11", "views": "1.192 lượt xem", "viewsNum": 1192, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=sP_tBa1LVNw", "category": "album"}, {"id": "XVqNjd4gjYI", "title": "Dĩ Vãng Nhạt Nhoà (acoustic) - J49 cover x Tô Chấn Phong", "channel": "J49 cover", "length": "4:18", "views": "1.169 lượt xem", "viewsNum": 1169, "published": "7 tháng trước", "url": "https://www.youtube.com/watch?v=XVqNjd4gjYI", "category": "solo"}, {"id": "t8u-Qe5v9Ms", "title": "Hoa nào anh quên   Tô Chấn Phong", "channel": "TakReal Channel", "length": "4:39", "views": "1.162 lượt xem", "viewsNum": 1162, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=t8u-Qe5v9Ms", "category": "solo"}, {"id": "6VKuJI9pNJk", "title": "Khúc Nhạc Buồn - Tô Chấn Phong", "channel": "archiveVideo", "length": "4:14", "views": "1.155 lượt xem", "viewsNum": 1155, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=6VKuJI9pNJk", "category": "solo"}, {"id": "gGblZP1RyOM", "title": "Kỉ niệm nào vội tan   Tô Chấn Phong", "channel": "huy trần thanh (thanhhuypk)", "length": "4:41", "views": "1.139 lượt xem", "viewsNum": 1139, "published": "12 năm trước", "url": "https://www.youtube.com/watch?v=gGblZP1RyOM", "category": "solo"}, {"id": "5ZTfhs2nRNg", "title": "Kỷ Niệm Nào Vội Tan - Tô Chấn Phong | Official Music Video | Mây Sài Gòn", "channel": "Mây Saigon Official ", "length": "5:02", "views": "1.139 lượt xem", "viewsNum": 1139, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=5ZTfhs2nRNg", "category": "solo"}, {"id": "ycWKwLoGcNA", "title": "Tô Chấn Phong - Ky Niem Chieu Mua", "channel": "TakReal Channel", "length": "4:02", "views": "1.105 lượt xem", "viewsNum": 1105, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=ycWKwLoGcNA", "category": "solo"}, {"id": "pRtNBrQ8KVw", "title": "[Playlist] Tuyển Tập Tô Chấn Phong_Lưu Bích", "channel": "BlueSky", "length": "56:12", "views": "1.092 lượt xem", "viewsNum": 1092, "published": "11 tháng trước", "url": "https://www.youtube.com/watch?v=pRtNBrQ8KVw", "category": "album"}, {"id": "3TEjCC6hLjc", "title": "Khúc Nhạc Buồn - Tô Chấn Phong", "channel": "an bui", "length": "4:07", "views": "1.090 lượt xem", "viewsNum": 1090, "published": "8 năm trước", "url": "https://www.youtube.com/watch?v=3TEjCC6hLjc", "category": "solo"}, {"id": "JCsvqLolThA", "title": "Dĩ vãng nhạt nhòa ll Tô Chấn Phong ft. Lưu Bích ll LV. Khúc Lan", "channel": "QQ Truong", "length": "4:05", "views": "1.057 lượt xem", "viewsNum": 1057, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=JCsvqLolThA", "category": "duet"}, {"id": "nnPSZlEDbfs", "title": "Một Thuở Yêu Người - Audio Official", "channel": "Tô Chấn Phong", "length": "4:29", "views": "964 lượt xem", "viewsNum": 964, "published": "7 năm trước", "url": "https://www.youtube.com/watch?v=nnPSZlEDbfs", "category": "solo"}, {"id": "GeVeG5ZsQt0", "title": "Dĩ Vãng Nhạt Nhoà -  Tô Chấn Phong/ Album : Khúc Nhạc Buồn#music#nhactrutinh#tochanphong#canhac", "channel": "Lonely Planet Music Channel", "length": "4:01", "views": "946 lượt xem", "viewsNum": 946, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=GeVeG5ZsQt0", "category": "album"}, {"id": "EqFRvVqN1B0", "title": "Tuyển Tập Nhạc Hoa Lời Việt Remix TikTok 2026 - Tô Chấn Phong & Những Bản Hit Đi Cùng Năm Tháng", "channel": "OD - Music", "length": "41:41", "views": "930 lượt xem", "viewsNum": 930, "published": "7 tháng trước", "url": "https://www.youtube.com/watch?v=EqFRvVqN1B0", "category": "album"}, {"id": "8Rb3AjCyFKw", "title": "MỘT CHÚT ÂN TÌNH | ALBUM | TÔ CHẤN PHONG & LƯU BÍCH", "channel": "Khanh Ha Official", "length": "44:11", "views": "919 lượt xem", "viewsNum": 919, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=8Rb3AjCyFKw", "category": "album"}, {"id": "KDk5yJkVH7c", "title": "Kỷ Niệm Chiều Mưa (Live) - Tô Chấn Phong, Khánh Hà | Phòng Trà Đồng Dao", "channel": "ĐỒNG DAO SHOW", "length": "4:10", "views": "916 lượt xem", "viewsNum": 916, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=KDk5yJkVH7c", "category": "duet"}, {"id": "fAYPnzOPLqY", "title": "Nhung Buoi Chieu Vang - To Chan Phong", "channel": "Hany Nguyen", "length": "4:03", "views": "876 lượt xem", "viewsNum": 876, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=fAYPnzOPLqY", "category": "solo"}, {"id": "dAyszIn8KN4", "title": "y2meta com Kỷ Niệm Chiều Mưa   Khánh Hà & Tô Chấn Phong   Phòng vấn với Mc Nguyễn Ngọc Ngạn", "channel": "Hoàng Nguyen", "length": "6:03", "views": "784 lượt xem", "viewsNum": 784, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=dAyszIn8KN4", "category": "duet"}, {"id": "5WBiPvd9J9k", "title": "Chìm Vào Quên Lãng Karaoke | Tô Chấn Phong | Karaoke Beat Chuẩn", "channel": "Ponymusic Karaoke", "length": "6:00", "views": "768 lượt xem", "viewsNum": 768, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=5WBiPvd9J9k", "category": "karaoke"}, {"id": "j4p3j7SfcN4", "title": "CON TIM THẬT THÀ. - Tô Chấn Phong", "channel": "DU LỊCH  THIÊN THANH", "length": "4:34", "views": "721 lượt xem", "viewsNum": 721, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=j4p3j7SfcN4", "category": "solo"}, {"id": "_KcQoeKBynE", "title": "Những buổi chiều vàng (Tô Chấn Phong)", "channel": "ductn", "length": "7:25", "views": "676 lượt xem", "viewsNum": 676, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=_KcQoeKBynE", "category": "solo"}, {"id": "76OAgujgmio", "title": "Khánh Hà & Tô Chấn Phong - Show Phòng Trà Đồng Dao | 2023-03-018", "channel": "Bich Thuann Official", "length": "6:15", "views": "611 lượt xem", "viewsNum": 611, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=76OAgujgmio", "category": "duet"}, {"id": "Fi89DOYnTHQ", "title": "Chìm Vào Lãng Quên ♫ Vào lãng quên, tình đã chìm sâu ♫ Tô Chấn Phong@reviews123", "channel": "Reviews 123", "length": "5:58", "views": "590 lượt xem", "viewsNum": 590, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=Fi89DOYnTHQ", "category": "solo"}, {"id": "MuqRunOTHkU", "title": "Quách Phú Thành (Aaron Kwok) ft. Tô Chấn Phong - Khúc Nhạc Buồn (Crying In Pain)", "channel": "haitrieu", "length": "3:44", "views": "561 lượt xem", "viewsNum": 561, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=MuqRunOTHkU", "category": "solo"}, {"id": "jeOpxf8VD_U", "title": "KHCD27   Khúc Nhạc Buồn   Tô Chấn Phong Thanh Hà", "channel": "Hoài Niệm Nhạc Xưa", "length": "46:01", "views": "544 lượt xem", "viewsNum": 544, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=jeOpxf8VD_U", "category": "album"}, {"id": "XQquIeMT9LY", "title": "Quán cafe vắng - Tô Chấn Phong 📲0907223269 🏡Tp Hải Phòng", "channel": "Audio Hạnh ", "length": "4:58", "views": "521 lượt xem", "viewsNum": 521, "published": "10 tháng trước", "url": "https://www.youtube.com/watch?v=XQquIeMT9LY", "category": "solo"}, {"id": "hKr7RzYRW90", "title": "HOA NÀO ANH QUÊN (HOA NÀO HOA TRẮNG) TÔ CHẤN PHONG", "channel": "Run Simple 9527", "length": "5:06", "views": "509 lượt xem", "viewsNum": 509, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=hKr7RzYRW90", "category": "solo"}, {"id": "DQkyQYyVOy8", "title": "Còn Yêu Em Mãi ( Lưu Bích, Tô Chấn Phong ) - Sao May", "channel": "Sao May", "length": "3:23", "views": "449 lượt xem", "viewsNum": 449, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=DQkyQYyVOy8", "category": "duet"}, {"id": "LF9afRvv3y0", "title": "TÔ CHẤN PHONG | CON TIM THẬT THÀ | Live at Đồng Dao |", "channel": "ĐỒNG DAO SHOW", "length": "4:40", "views": "395 lượt xem", "viewsNum": 395, "published": "1 tháng trước", "url": "https://www.youtube.com/watch?v=LF9afRvv3y0", "category": "solo"}, {"id": "MiBFWtKTMxE", "title": "Tuyển tập nhạc tình sâu lắng Tô Chấn Phong và Lâm Nhật Tiến", "channel": "LUXUBU", "length": "1:21:15", "views": "384 lượt xem", "viewsNum": 384, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=MiBFWtKTMxE", "category": "album"}, {"id": "8Qj7JmjG33E", "title": "KHÁNH HÀ | TÔ CHẤN PHONG | LƯU BÍCH - TALK SHOW", "channel": "Khanh Ha Official", "length": "13:44", "views": "374 lượt xem", "viewsNum": 374, "published": "8 tháng trước", "url": "https://www.youtube.com/watch?v=8Qj7JmjG33E", "category": "duet"}, {"id": "An599sBxcDk", "title": "Danh ca Khánh Hà & ông xã Tô Chấn Phong livestream trò chuyện thật đáng yêu", "channel": "Bich Thuann Official", "length": "0:53", "views": "370 lượt xem", "viewsNum": 370, "published": "4 tháng trước", "url": "https://www.youtube.com/watch?v=An599sBxcDk", "category": "duet"}, {"id": "risrLo6kucE", "title": "Khánh Hà & Tô Chấn Phong ft Shoko Minami  - Kỷ Niệm Chiều Mưa", "channel": "haitrieu", "length": "1:01", "views": "369 lượt xem", "viewsNum": 369, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=risrLo6kucE", "category": "duet"}, {"id": "3Cu2p3TRGQI", "title": "Quán cà phê vắng - Tô Chấn Phong", "channel": "Khánh Huỳnh Kim", "length": "4:52", "views": "351 lượt xem", "viewsNum": 351, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=3Cu2p3TRGQI", "category": "solo"}, {"id": "XVEpqy13FEA", "title": "Tình đầu chưa nguôi - cover Băng Sơn (Tô Chấn Phong)", "channel": "Hà Nguyễn Mạnh", "length": "4:35", "views": "329 lượt xem", "viewsNum": 329, "published": "6 năm trước", "url": "https://www.youtube.com/watch?v=XVEpqy13FEA", "category": "solo"}, {"id": "nk44H_2l3jI", "title": "Từ Khi Biết Em - Tô Chấn Phong", "channel": "Thanh Nguyen", "length": "3:36", "views": "299 lượt xem", "viewsNum": 299, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=nk44H_2l3jI", "category": "solo"}, {"id": "e-S6WMlMxy0", "title": "Khánh Hà & Tô Chấn Phong ft Shoko Minami - Kỷ Niệm Chiều Mưa", "channel": "haitrieu", "length": "2:35", "views": "268 lượt xem", "viewsNum": 268, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=e-S6WMlMxy0", "category": "duet"}, {"id": "E8m3gSg8glw", "title": "Giữ Lại Thanh Xuân 6 | TÔ CHẤN PHONG", "channel": "Khanh Ha Official", "length": "1:21:10", "views": "247 lượt xem", "viewsNum": 247, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=E8m3gSg8glw", "category": "album"}, {"id": "b-bYDresjaU", "title": "Một thuở yêu người  To Chan Phong   www conduongtrieudo com", "channel": "Khát Vọng Làm Giàu", "length": "4:33", "views": "243 lượt xem", "viewsNum": 243, "published": "14 năm trước", "url": "https://www.youtube.com/watch?v=b-bYDresjaU", "category": "solo"}, {"id": "g8JVAFW5dXg", "title": "🔴 0032 ▶ Tô Chấn Phong - Những bài hát hay", "channel": "Yêu vẻ đẹp cuộc sống", "length": "23:41", "views": "233 lượt xem", "viewsNum": 233, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=g8JVAFW5dXg", "category": "album"}, {"id": "vz7JpoINDbk", "title": "Một thuở yêu người - Nhạc ngoại quốc - Tô chấn Phong", "channel": "tungdesign2006", "length": "4:39", "views": "226 lượt xem", "viewsNum": 226, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=vz7JpoINDbk", "category": "solo"}, {"id": "lg8VG8STdQs", "title": "Kỷ Niệm Chiều Mưa (Tô Chấn Phong, Khánh Hà)", "channel": "Bằng Pianist", "length": "3:56", "views": "222 lượt xem", "viewsNum": 222, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=lg8VG8STdQs", "category": "duet"}, {"id": "fqx8D0A9OuQ", "title": "Khánh Hà Video 6 | Trịnh Nam Sơn & Tô Chấn Phong - Nhớ Phút Ấy", "channel": "Nhạc Cũ Sưu Tập", "length": "4:00", "views": "208 lượt xem", "viewsNum": 208, "published": "2 tháng trước", "url": "https://www.youtube.com/watch?v=fqx8D0A9OuQ", "category": "duet"}, {"id": "H6_1fCcpDso", "title": "ANH ĐÃ QUÊN MÙA THU - Thanh Hà & Tô Chấn Phong", "channel": "Andy Truong", "length": "5:12", "views": "196 lượt xem", "viewsNum": 196, "published": "2 năm trước", "url": "https://www.youtube.com/watch?v=H6_1fCcpDso", "category": "duet"}, {"id": "BOuKOeE5Tmo", "title": "TÔ CHẤN PHONG | YÊU MỘT NGƯỜI - Nhạc Ngoại Lời Việt | Live at Đồng Dao |", "channel": "ĐỒNG DAO SHOW", "length": "4:05", "views": "193 lượt xem", "viewsNum": 193, "published": "2 tháng trước", "url": "https://www.youtube.com/watch?v=BOuKOeE5Tmo", "category": "solo"}, {"id": "sqa3iaSrPMU", "title": "Kỷ niệm chiều mưa (Lv Lữ Liên) | MC Nguyễn Ngọc Ngạn phỏng vấn Khánh Hà & Tô Chấn Phong", "channel": "Bich Thuann Official", "length": "6:21", "views": "190 lượt xem", "viewsNum": 190, "published": "5 tháng trước", "url": "https://www.youtube.com/watch?v=sqa3iaSrPMU", "category": "duet"}, {"id": "QXjFsSvh3Aw", "title": "Con Tim Thật Thà - Tô Chấn Phong | Hát Live Phòng Trà Cực Hay", "channel": "Lam Melody", "length": "4:31", "views": "159 lượt xem", "viewsNum": 159, "published": "1 năm trước", "url": "https://www.youtube.com/watch?v=QXjFsSvh3Aw", "category": "solo"}, {"id": "cwQU76eW94E", "title": "Kỷ Niệm Nào Vội Tan - Tô chấn phong", "channel": "Lonely Planet Music Channel", "length": "47:19", "views": "153 lượt xem", "viewsNum": 153, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=cwQU76eW94E", "category": "album"}, {"id": "OkP1lcDrZVk", "title": "Con tim thật thà - Tô Chấn Phong#minhnguyet268", "channel": "Minh Nguyệt", "length": "4:38", "views": "144 lượt xem", "viewsNum": 144, "published": "4 năm trước", "url": "https://www.youtube.com/watch?v=OkP1lcDrZVk", "category": "solo"}, {"id": "4PY7NvkPpmw", "title": "Tô Chấn Phong | Một Thuở Yêu Người | Music&Me Official", "channel": "Music&Me Official", "length": "27:27", "views": "133 lượt xem", "viewsNum": 133, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=4PY7NvkPpmw", "category": "album"}, {"id": "-jeY1TLh-pw", "title": "Tô Chấn Phong - Ky Niem Chieu Mua", "channel": "Lam Thi Minh Trang", "length": "4:02", "views": "126 lượt xem", "viewsNum": 126, "published": "10 năm trước", "url": "https://www.youtube.com/watch?v=-jeY1TLh-pw", "category": "solo"}, {"id": "csIEd8h3h7w", "title": "Quán cafe vắng - Tô Chấn Phong - trình bày Trọng Nguyễn", "channel": "Trọng Nguyễn Official", "length": "5:08", "views": "125 lượt xem", "viewsNum": 125, "published": "5 năm trước", "url": "https://www.youtube.com/watch?v=csIEd8h3h7w", "category": "solo"}, {"id": "5yNBic0EimU", "title": "Tô Chấn Phong & Khánh Hà - Kỷ Niệm Chiều Mưa", "channel": "Thai Nguyen Vu", "length": "4:14", "views": "97 lượt xem", "viewsNum": 97, "published": "9 năm trước", "url": "https://www.youtube.com/watch?v=5yNBic0EimU", "category": "duet"}, {"id": "X4gQs_6k-po", "title": "Quán cafe vắng-Tô Chấn Phong", "channel": "ductn", "length": "9:08", "views": "92 lượt xem", "viewsNum": 92, "published": "3 năm trước", "url": "https://www.youtube.com/watch?v=X4gQs_6k-po", "category": "solo"}, {"id": "bIdjnGvwfes", "title": "Kỷ niệm nào vội tan - Tô Chấn Phong", "channel": "Cường Nguyễn", "length": "4:41", "views": "78 lượt xem", "viewsNum": 78, "published": "10 tháng trước", "url": "https://www.youtube.com/watch?v=bIdjnGvwfes", "category": "solo"}];
+
+    const CAT_LABELS = {
+      solo: "Solo",
+      duet: "Song ca",
+      album: "Album / Show",
+      karaoke: "Karaoke"
+    };
+
+    const QUICK_PICKS = [
+      { id: "_2jog23ZMI4", label: "Một Thuở Yêu Người (MV)" },
+      { id: "qUbF2GNPejo", label: "Dĩ Vãng Nhạt Nhòa (cùng Lưu Bích)" },
+      { id: "MZwAmWrKAxI", label: "Tình Nồng (Live Mây Sài Gòn)" },
+      { id: "rNiKLx59YzE", label: "Dĩ Vãng Nhạt Nhòa (cùng Khánh Hà)" },
+      { id: "gcscFZzLuwM", label: "Kỷ Niệm Nào Vội Tan (Live)" },
+      { id: "Gs5zlStwujk", label: "Còn Yêu Em Mãi (cùng Lưu Bích)" },
+      { id: "a-YA_VzAHG8", label: "Xin Lỗi (cùng Nguyên Hà)" },
+      { id: "ga1x648_8-w", label: "Hoa Nào Anh Quên (Live SGC)" }
+    ];
+
+    let currentIndex = 0;
+    let currentCat = "all";
+    let searchQuery = "";
+
+    const videoStageContainer = document.getElementById("videoStageContainer");
+    const npTitle = document.getElementById("npTitle");
+    const npChannel = document.getElementById("npChannel");
+    const npLength = document.getElementById("npLength");
+    const npViews = document.getElementById("npViews");
+    const openYtLink = document.getElementById("openYtLink");
+    const playerTrackIndex = document.getElementById("playerTrackIndex");
+    const trackTableBody = document.getElementById("trackTableBody");
+    const filteredCountText = document.getElementById("filteredCountText");
+    const quickPicksContainer = document.getElementById("quickPicksContainer");
+
+    function renderStage(track, autoplay) {
+      const isFileProtocol = window.location.protocol === "file:";
+      if (!isFileProtocol) {
+        const autoParam = autoplay ? "&autoplay=1" : "";
+        videoStageContainer.innerHTML = `
+          <iframe
+            src="https://www.youtube.com/embed/${track.id}?rel=0${autoParam}"
+            title="${track.title}"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        `;
+      } else {
+        const thumbUrl = `https://i.ytimg.com/vi/${track.id}/hqdefault.jpg`;
+        videoStageContainer.innerHTML = `
+          <div class="stage-sleeve" id="stageSleeveTrigger" title="Bấm để mở trình phát YouTube">
+            <img class="stage-backdrop" src="${thumbUrl}" alt="${track.title}" />
+            <div class="stage-vignette"></div>
+            <div class="vinyl-disc"></div>
+            <div class="stage-play-cta">
+              <div class="play-circle">▶</div>
+              <span class="play-caption">Bấm để thưởng thức trên YouTube (${track.length || "MV"})</span>
+            </div>
+          </div>
+        `;
+        document.getElementById("stageSleeveTrigger").addEventListener("click", () => {
+          window.open(track.url, "ToChanPhongPlayer", "width=980,height=620,menubar=no,toolbar=no,location=no,status=no");
+        });
+      }
+    }
+
+    function loadTrack(index, autoplay = true) {
+      if (index < 0 || index >= SONGS.length) return;
+      currentIndex = index;
+      const track = SONGS[index];
+      renderStage(track, autoplay);
+      npTitle.textContent = track.title;
+      npChannel.textContent = track.channel || "YouTube";
+      npLength.textContent = track.length || "—";
+      npViews.textContent = track.views || "—";
+      openYtLink.href = track.url;
+      playerTrackIndex.textContent = `Bản thu #${String(index + 1).padStart(3, "0")} / ${SONGS.length}`;
+      renderQuickPicks();
+      renderTable();
+    }
+
+    window.playById = function(videoId) {
+      const idx = SONGS.findIndex(s => s.id === videoId);
+      if (idx !== -1) {
+        loadTrack(idx, true);
+      }
+    };
+
+    function renderQuickPicks() {
+      quickPicksContainer.innerHTML = "";
+      QUICK_PICKS.forEach(item => {
+        const idx = SONGS.findIndex(s => s.id === item.id);
+        if (idx === -1) return;
+        const s = SONGS[idx];
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "quick-pick-btn" + (currentIndex === idx ? " active" : "");
+        btn.innerHTML = `
+          <span>♫ ${item.label}</span>
+          <span class="quick-pick-views">${s.length || ""}</span>
+        `;
+        btn.addEventListener("click", () => loadTrack(idx, true));
+        quickPicksContainer.appendChild(btn);
+      });
+    }
+
+    function renderTable() {
+      const q = searchQuery.trim().toLowerCase();
+      const filtered = SONGS.map((s, idx) => ({ ...s, originalIndex: idx })).filter(s => {
+        if (currentCat !== "all" && s.category !== currentCat) return false;
+        if (q && !(s.title.toLowerCase().includes(q) || s.channel.toLowerCase().includes(q))) return false;
+        return true;
+      });
+
+      filteredCountText.textContent = `Hiển thị ${filtered.length} / ${SONGS.length} bản thu`;
+      trackTableBody.innerHTML = filtered.map((s, rowIdx) => `
+        <tr class="track-row ${s.originalIndex === currentIndex ? 'playing' : ''}" data-idx="${s.originalIndex}">
+          <td class="track-index">${String(rowIdx + 1).padStart(3, "0")}</td>
+          <td>
+            <span class="track-name">${s.title}</span>
+            <span class="track-channel">${s.channel || "YouTube"} ${s.published ? " • " + s.published : ""}</span>
+          </td>
+          <td><span class="cat-badge">${CAT_LABELS[s.category] || "Khác"}</span></td>
+          <td>${s.length || "—"}</td>
+          <td>${s.views || "—"}</td>
+          <td><a class="yt-ext-link" href="${s.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">YouTube ↗</a></td>
+        </tr>
+      `).join("");
+
+      trackTableBody.querySelectorAll(".track-row").forEach(row => {
+        row.addEventListener("click", () => {
+          const idx = Number(row.getAttribute("data-idx"));
+          loadTrack(idx, true);
+        });
+      });
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      const nextIdx = (currentIndex - 1 + SONGS.length) % SONGS.length;
+      loadTrack(nextIdx, true);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      const nextIdx = (currentIndex + 1) % SONGS.length;
+      loadTrack(nextIdx, true);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", (e) => {
+      searchQuery = e.target.value;
+      renderTable();
+    });
+
+    document.querySelectorAll(".filter-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+        tab.classList.add("active");
+        currentCat = tab.getAttribute("data-cat");
+        renderTable();
+      });
+    });
+
+    document.getElementById("copyPostBtn").addEventListener("click", () => {
+      const text = document.getElementById("fanpagePostText").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyPostBtn");
+        btn.textContent = "✓ Đã sao chép bài đăng";
+        setTimeout(() => {
+          btn.textContent = "Sao chép nội dung bài đăng";
+        }, 2200);
+      });
+    });
+
+    loadTrack(0, false);
+  </script>
+</body>
+</html>
